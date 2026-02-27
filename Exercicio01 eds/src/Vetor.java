@@ -47,10 +47,8 @@ public class Vetor {
         if (vetor.length == tamanho) {
             throw new ArrayIndexOutOfBoundsException("Essse vetor está cheio");
         }
-        if (contem(elemento) == false) {
-            vetor[tamanho] = elemento;
-            tamanho++;
-        }
+        vetor[tamanho] = elemento;
+        tamanho++;
     }
 
     public int buscar(String elemento){
@@ -60,6 +58,37 @@ public class Vetor {
             }
         }
         return -1;
+    }
+
+    public void limpar(){
+        tamanho = 0;
+    }
+
+    public int contarOcorrencias(String elemento){
+        int ocorrencia = 0;
+        for (int i = 0; i < tamanho; i++) {
+            if (vetor[i].equals(elemento)){
+                ocorrencia ++;
+            }
+        }
+        return ocorrencia;
+    }
+
+
+    /*public boolean substituir(String elemento, String novoElemento){
+        if (buscar(elemento) != -1){
+            vetor[buscar(elemento)] = novoElemento;
+            return true;
+        }
+        return false;
+    }*/
+    public boolean substituir(String elemento, String novoElemento){
+        int posicao = buscar(elemento);
+        if (posicao != -1){
+            vetor[posicao] = novoElemento;
+            return true;
+        }
+        return false;
     }
 
     public int getTamanho() {
