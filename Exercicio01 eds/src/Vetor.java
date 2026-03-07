@@ -91,11 +91,69 @@ public class Vetor {
         return false;
     }
 
+    public void remover(int posicao){
+        if (0 > posicao || posicao >= tamanho){
+            throw new IllegalArgumentException("Posição invalida");
+        }else {
+            for (int i = posicao; i < tamanho-1; i++){
+                vetor[i] = vetor[i+1];
+            }
+            tamanho--;
+            vetor[tamanho] = null;
+        }
+    }
+
+    //remover usando o buscar
+
+    public boolean remover(String elemento){
+        int posicao = buscar(elemento);
+        if (posicao != -1){
+            remover(posicao);
+            return true;
+        }
+        return false;
+    }
+
+    //TODO METODOS EXTRA
+
+    public int indiceUltimo(String elemento){
+        for (int i = tamanho-1; i >= 0; i--){
+            if (vetor[i].equals(elemento)){
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public void removerTodos(String elemento){
+        while (remover(elemento)){
+        }
+    }
+
+    public boolean addSeNaoExistente(String elemento){
+        if (contem(elemento)){
+            return false;
+        }
+        add(elemento);
+        return true;
+    }
+
+    public boolean inserirDepois(String referencia, String elemento){
+        int posicao = buscar(referencia);
+        if(posicao != -1){
+            for (int i = tamanho-1; i >=posicao+1; i--){
+                vetor[i+1] = vetor[i];
+            }
+            vetor[posicao+1] = elemento;
+            tamanho++;
+            return true;
+        }
+        return false;
+    }
+
     public int getTamanho() {
         return tamanho;
     }
 
-    public void setTamanho(int tamanho) {
-        this.tamanho = tamanho;
-    }
+
 }
